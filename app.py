@@ -20,7 +20,7 @@ lineaccesstoken = 'S8q+jn6JQOml7H7w91vcHd1sVVlyuLxKHOb/PPQFrmo+2LX8sx+um9w6ei+Nv
 line_bot_api = LineBotApi(lineaccesstoken)
 
 ####################### new ########################
-@app.route('https://chatbotdemoengine.herokuapp.com/webhook')
+@app.route('/')
 def index():
     return "Hello World!"
 
