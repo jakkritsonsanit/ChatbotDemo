@@ -92,6 +92,7 @@ def get_wo_cr_tokens(text):
 def TrainModel(dat):
     trdat,tedat = splittraintest(dat)
 
+    trkeyword = trdat['Keyword'].values
     vectorizer = TfidfVectorizer(tokenizer=get_wo_cr_tokens, ngram_range=(1,3))
     vectorizer.fit(trkeyword)
 
@@ -106,14 +107,14 @@ def TrainModel(dat):
     model = LinearSVC(random_state=0)
     model.fit(trfeat_norm, trlabel)
 
-    return model
+    return model, vectorizer
 
 def GetResult(keyword):
     xl = pd.ExcelFile('IT-KMITL-dataset.xlsx')
     dat = xl.parse(sheet_name='Sheet1')
     ansdat = xl.parse(sheet_name='Sheet2')
 
-    model = TrainModel(dat)
+    model, vectorizer = TrainModel(dat)
 
     keyword = [keyword]
     feat = vectorizer.transform(keyword)
@@ -123,5 +124,10 @@ def GetResult(keyword):
     result = ansdat[ansdat['Intent'] == intent]
     textresult = result
     textresult = textresult['Answer'].values+'\n'+textresult['Source'].values
-    textresult = textresult[0]
-    return textresult
+    if textresult:
+        textresult = textresult[0]
+        return textresult
+    else:
+        print("ขออภัยยังไม่สามารถตอบคำถามนี้ได้ค่ะ")
+    
+
