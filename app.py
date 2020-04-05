@@ -25,7 +25,7 @@ def index():
     return "Hello World!"
 
 
-@app.route('https://chatbotdemoengine.herokuapp.com/webhook', methods=['POST'])
+@app.route('/webhook', methods=['POST'])
 def callback():
     json_line = request.get_json(force=False,cache=False)
     json_line = json.dumps(json_line)
