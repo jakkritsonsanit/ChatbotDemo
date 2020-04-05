@@ -15,7 +15,7 @@ def splittraintest(dat,trainratio=0.7):
 def get_wo_cr_tokens(text):
     return word_tokenize(text) + list(text)
 
-def TrainModel(dat):
+def trainModel(dat):
     trdat,tedat = splittraintest(dat)
 
     trkeyword = trdat['Keyword'].values
