@@ -50,13 +50,16 @@ def getresult(keyword):
     result = ansdat[ansdat['Intent'] == intent]
     textresult = result
     
-    if textresult.empty:
-        print('check if')
+    try:
+        if textresult.empty:
+            print('check if')
+            return "ขออภัยยังไม่สามารถตอบคำถามนี้ได้ค่ะ"
+        else:
+            print('else condition')
+            textresult = textresult['Answer'].values+'\n'+textresult['Source'].values
+            textresult = textresult[0]
+            return str(textresult)
+    except KeyError:
         return "ขออภัยยังไม่สามารถตอบคำถามนี้ได้ค่ะ"
-    else:
-        print('else condition')
-        textresult = textresult['Answer'].values+'\n'+textresult['Source'].values
-        textresult = textresult[0]
-        return str(textresult)
         
     
