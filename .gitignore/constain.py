@@ -1,0 +1,2 @@
+def API_KEY ():
+    return 'S8q+jn6JQOml7H7w91vcHd1sVVlyuLxKHOb/PPQFrmo+2LX8sx+um9w6ei+NvxB996hYf9JZ8VftARif9bKfzUeR6IKZqNk4XUdsIQWoXJVEJEg9X9HnIWSJ7FCfCztrMUt1yeAXilQktgT4vt61HQdB04t89/1O/w1cDnyilFU='
