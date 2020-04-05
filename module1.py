@@ -51,8 +51,10 @@ def getresult(keyword):
     textresult = result
     
     if textresult.empty:
+        print('check if')
         return "ขออภัยยังไม่สามารถตอบคำถามนี้ได้ค่ะ"
     else:
+        print('else condition')
         textresult = textresult['Answer'].values+'\n'+textresult['Source'].values
         textresult = textresult[0]
         return str(textresult)
