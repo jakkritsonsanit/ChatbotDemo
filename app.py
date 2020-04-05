@@ -5,6 +5,7 @@
 from flask import Flask, jsonify, render_template, request
 import json
 import numpy as np
+import Model
 
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,TemplateSendMessage,ImageSendMessage, StickerSendMessage, AudioSendMessage
@@ -63,6 +64,7 @@ def event_handle(event):
     if msgType == "text":
         msg = str(event["message"]["text"])
         print(msg)
+        print(Model.GetResult(msg))
         replyObj = TextSendMessage(text=msg)
         line_bot_api.reply_message(rtoken, replyObj)
 
