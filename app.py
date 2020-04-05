@@ -67,6 +67,7 @@ def event_handle(event):
 
     if msgType == "text":
         msg = str(GetResult(event["message"]["text"]))
+        print(msg)
         replyObj = TextSendMessage(text=msg)
         line_bot_api.reply_message(rtoken, replyObj)
 
