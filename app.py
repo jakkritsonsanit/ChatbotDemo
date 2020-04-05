@@ -66,8 +66,8 @@ def event_handle(event):
         return ''
 
     if msgType == "text":
-        result = GetResult(str(event["message"]["text"]))
-        msg = str(result)
+        # result = GetResult(str(event["message"]["text"]))
+        msg = str(event["message"]["text"])
         print(msg)
         replyObj = TextSendMessage(text=msg)
         line_bot_api.reply_message(rtoken, replyObj)
@@ -81,55 +81,55 @@ def event_handle(event):
 if __name__ == '__main__':
     app.run(debug=True)
 
-def splittraintest(dat,trainratio=0.7):
-    sdat = dat.sample(frac=1,random_state=0)
-    ntrain = int(len(dat)*trainratio)
-    traindat = sdat.iloc[0:ntrain]
-    testdat = sdat.iloc[ntrain:]
-    return traindat,testdat
+# def splittraintest(dat,trainratio=0.7):
+#     sdat = dat.sample(frac=1,random_state=0)
+#     ntrain = int(len(dat)*trainratio)
+#     traindat = sdat.iloc[0:ntrain]
+#     testdat = sdat.iloc[ntrain:]
+#     return traindat,testdat
 
-def get_wo_cr_tokens(text):
-    return word_tokenize(text) + list(text)
+# def get_wo_cr_tokens(text):
+#     return word_tokenize(text) + list(text)
 
-def TrainModel(dat):
-    trdat,tedat = splittraintest(dat)
+# def TrainModel(dat):
+#     trdat,tedat = splittraintest(dat)
 
-    trkeyword = trdat['Keyword'].values
-    vectorizer = TfidfVectorizer(tokenizer=get_wo_cr_tokens, ngram_range=(1,3))
-    vectorizer.fit(trkeyword)
+#     trkeyword = trdat['Keyword'].values
+#     vectorizer = TfidfVectorizer(tokenizer=get_wo_cr_tokens, ngram_range=(1,3))
+#     vectorizer.fit(trkeyword)
 
-    tekeyword = tedat['Keyword'].values
-    trfeat = vectorizer.transform(trkeyword)
-    tefeat = vectorizer.transform(tekeyword)
+#     tekeyword = tedat['Keyword'].values
+#     trfeat = vectorizer.transform(trkeyword)
+#     tefeat = vectorizer.transform(tekeyword)
 
-    trlabel = trdat['Intent'].values
-    telabel = tedat['Intent'].values
-    trfeat_norm = normalize(trfeat)
-    tefeat_norm = normalize(tefeat)
-    model = LinearSVC(random_state=0)
-    model.fit(trfeat_norm, trlabel)
+#     trlabel = trdat['Intent'].values
+#     telabel = tedat['Intent'].values
+#     trfeat_norm = normalize(trfeat)
+#     tefeat_norm = normalize(tefeat)
+#     model = LinearSVC(random_state=0)
+#     model.fit(trfeat_norm, trlabel)
 
-    return model, vectorizer
+#     return model, vectorizer
 
-def GetResult(keyword):
-    xl = pd.ExcelFile('IT-KMITL-dataset.xlsx')
-    dat = xl.parse(sheet_name='Sheet1')
-    ansdat = xl.parse(sheet_name='Sheet2')
+# def GetResult(keyword):
+#     xl = pd.ExcelFile('IT-KMITL-dataset.xlsx')
+#     dat = xl.parse(sheet_name='Sheet1')
+#     ansdat = xl.parse(sheet_name='Sheet2')
 
-    model, vectorizer = TrainModel(dat)
+#     model, vectorizer = TrainModel(dat)
 
-    keyword = [keyword]
-    feat = vectorizer.transform(keyword)
-    feat_norm = normalize(feat)
-    intent = model.predict(feat_norm)[0]
+#     keyword = [keyword]
+#     feat = vectorizer.transform(keyword)
+#     feat_norm = normalize(feat)
+#     intent = model.predict(feat_norm)[0]
 
-    result = ansdat[ansdat['Intent'] == intent]
-    textresult = result
-    textresult = textresult['Answer'].values+'\n'+textresult['Source'].values
-    if textresult:
-        textresult = textresult[0]
-        return textresult
-    else:
-        print("ขออภัยยังไม่สามารถตอบคำถามนี้ได้ค่ะ")
+#     result = ansdat[ansdat['Intent'] == intent]
+#     textresult = result
+#     textresult = textresult['Answer'].values+'\n'+textresult['Source'].values
+#     if textresult:
+#         textresult = textresult[0]
+#         return textresult
+#     else:
+#         print("ขออภัยยังไม่สามารถตอบคำถามนี้ได้ค่ะ")
     
 
