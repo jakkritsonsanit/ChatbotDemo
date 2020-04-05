@@ -40,7 +40,7 @@ def getresult(keyword):
     dat = xl.parse(sheet_name='Sheet1')
     ansdat = xl.parse(sheet_name='Sheet2')
 
-    model, vectorizer = TrainModel(dat)
+    model, vectorizer = trainModel(dat)
 
     keyword = [keyword]
     feat = vectorizer.transform(keyword)
