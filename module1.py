@@ -49,10 +49,12 @@ def getresult(keyword):
 
     result = ansdat[ansdat['Intent'] == intent]
     textresult = result
-    textresult = textresult['Answer'].values+'\n'+textresult['Source'].values
-    if textresult:
-        textresult = textresult[0]
-        return textresult
+    
+    if textresult.empty:
+        return print"ขออภัยยังไม่สามารถตอบคำถามนี้ได้ค่ะ"
     else:
-        print("ขออภัยยังไม่สามารถตอบคำถามนี้ได้ค่ะ")
+        textresult = textresult['Answer'].values+'\n'+textresult['Source'].values
+        textresult = textresult[0]
+        return str(textresult)
+        
     
