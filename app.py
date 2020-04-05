@@ -5,7 +5,7 @@
 from flask import Flask, jsonify, render_template, request
 import json
 import numpy as np
-from Model import *
+from model import GetResult
 
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,TemplateSendMessage,ImageSendMessage, StickerSendMessage, AudioSendMessage
