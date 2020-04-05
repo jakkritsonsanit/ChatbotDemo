@@ -10,4 +10,4 @@ googletrans
 numpy
 pythainlp
 sklearn
-xrld
+xrlrd
