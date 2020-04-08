@@ -36,7 +36,7 @@ def trainModel(dat):
     return model, vectorizer
 
 def getresult(keyword):
-    xl = pd.ExcelFile('IT-KMITL-dataset.xlsx')
+    xl = pd.ExcelFile('Data\IT-KMITL-dataset.xlsx')
     dat = xl.parse(sheet_name='Sheet1')
     ansdat = xl.parse(sheet_name='Sheet2')
 
@@ -52,10 +52,8 @@ def getresult(keyword):
     
     try:
         if textresult.empty:
-            print('check if')
             return "ขออภัยยังไม่สามารถตอบคำถามนี้ได้ค่ะ"
         else:
-            print('else condition')
             textresult = textresult['Answer'].values+'\n'+textresult['Source'].values
             textresult = textresult[0]
             return str(textresult)
