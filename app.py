@@ -6,6 +6,7 @@ from flask import Flask, jsonify, render_template, request
 import json
 import numpy as np
 from module1 import getresult
+from constants import api_key
 
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,TemplateSendMessage,ImageSendMessage, StickerSendMessage, AudioSendMessage
@@ -17,7 +18,7 @@ from linebot import (
 
 app = Flask(__name__)
 
-lineaccesstoken = 'S8q+jn6JQOml7H7w91vcHd1sVVlyuLxKHOb/PPQFrmo+2LX8sx+um9w6ei+NvxB996hYf9JZ8VftARif9bKfzUeR6IKZqNk4XUdsIQWoXJVEJEg9X9HnIWSJ7FCfCztrMUt1yeAXilQktgT4vt61HQdB04t89/1O/w1cDnyilFU='
+lineaccesstoken = api_key
 line_bot_api = LineBotApi(lineaccesstoken)
 
 ####################### new ########################
