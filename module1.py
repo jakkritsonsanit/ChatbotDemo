@@ -36,7 +36,7 @@ def trainModel(dat):
     return model, vectorizer
 
 def getresult(keyword):
-    xl = pd.ExcelFile('Data\IT-KMITL-dataset.xlsx')
+    xl = pd.ExcelFile('IT-KMITL-dataset.xlsx')
     dat = xl.parse(sheet_name='Sheet1')
     ansdat = xl.parse(sheet_name='Sheet2')
 
